@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_food/helpers/platform_aware_asset_image.dart';
-import 'package:flutter_food/pages/food/food_main_page.dart';
+import 'package:flutter_food/pages/food/food_page.dart';
 import 'package:flutter_food/pages/profile/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,18 +61,18 @@ class _HomePageState extends State<HomePage> {
                       width: 80.0,
                       height: 80.0,
                       child: PlatformAwareAssetImage(
-                        assetPath: 'assets/images/profile.png',
+                        assetPath: 'assets/images/profile1.jpg',
                       ),
                     )
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    'Promlert Lovichit',
+                    'Supitcha Methakijphakhin',
                     style: TextStyle(fontSize: 20.0, color: Colors.white),
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    'promlert@gmail.com',
+                    'supiitcha232@hotmail.com',
                     style: TextStyle(
                         fontSize: 14.0, color: Colors.white.withOpacity(0.6)),
                   ),
