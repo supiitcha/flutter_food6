@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_food/models/food_item.dart';
 import 'package:flutter_food/pages/food/food_list_page.dart';
+import 'package:http/http.dart' as http;
 
 class FoodMainPage extends StatefulWidget {
   const FoodMainPage({Key? key}) : super(key: key);
@@ -32,6 +36,10 @@ class _FoodMainPageState extends State<FoodMainPage> {
           });
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _fetchFoods,
+        child: Icon(Icons.add),
+      ),
       body: _selectedBottomNavIndex == 0
           ? FoodListPage()
           : Container(
@@ -42,4 +50,25 @@ class _FoodMainPageState extends State<FoodMainPage> {
             ),
     );
   }
+  Future<void> _fetchFoods() async {
+    var url = Uri.parse('https://cpsu-test-api.herokuapp.com/foods');
+    var response = await  http.get(url);
+    if(response.statusCode == 200){
+      Map<String, dynamic> jsonBody = json.decode(response.body);
+      String status = jsonBody['status'];
+      String? message = jsonBody['message'];
+      List<dynamic> data = jsonBody['data'];
+
+      print('STATUS: $status');
+      print('MESSAGE: $message');
+
+      var foodList = data.map((element) => FoodItem(
+          id: element['id'],
+          name: element['name'],
+          price: element['price'],
+          image: element['image']
+      )).toString();
+    }
+  }
+
 }
